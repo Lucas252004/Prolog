@@ -1,54 +1,56 @@
-# ⚙️ Paradigma Funcional en Haskell
+# 🧠 Paradigma Lógico en SWI-Prolog
 
-[![Haskell](https://img.shields.io/badge/Language-Haskell_GHC-5e5086?style=for-the-badge&logo=haskell&logoColor=white)](https://www.haskell.org/)
+[![Prolog](https://img.shields.io/badge/Language-SWI--Prolog-red?style=for-the-badge&logo=swi-prolog&logoColor=white)](https://www.swi-prolog.org/)
 [![Academic](https://img.shields.io/badge/Curso-Paradigmas_de_Programación-blue?style=for-the-badge)](#)
 [![Status](https://img.shields.io/badge/Status-Completado-brightgreen?style=for-the-badge)](#)
 
-Este repositorio contiene las soluciones de los ejercicios prácticos de **Programación Funcional** correspondientes a la materia *Paradigmas de Programación*.
+Este repositorio reúne las soluciones a las guías de trabajos prácticos de **Programación Lógica** desarrolladas en la universidad. 
 
-El enfoque principal de las soluciones radica en la utilización rigurosa de **esquemas de recursión** (prohibiendo la recursión explícita siempre que sea posible) para promover la reusabilidad de código, el razonamiento ecuacional y el aprovechamiento del sistema de tipos y la evaluación diferida (*lazy evaluation*).
+El objetivo principal es resolver problemas mediante la declaración de **hechos, reglas, unificación y backtracking**, evaluando constantemente la **reversibilidad** de los predicados y previniendo bucles infinitos en el árbol de búsqueda de Prolog.
 
 ---
 
-## 📌 Estructura y Contenidos Destacados
+## 📌 Contenido de la Guía Práctica
 
-A continuación se resumen los módulos resueltos y los conceptos teóricos trabajados:
+Los ejercicios cubren los temas centrales de la materia, divididos en las siguientes áreas:
 
-| Tema / Módulo | Conceptos Clave & Ejercicios |
+| Módulo / Tema | Descripción y Predicados Implementados |
 | :--- | :--- |
-| **Currificación y Tipado** | Transposición de argumentos, funciones de alto orden, `curry`, `uncurry` y evaluación parcial. |
-| **Recursión Estructural sobre Listas** | Redefinición de funciones del prelude (`map`, `filter`, `foldr`, `foldl`), `mejorSegún`, `sumasParciales` y `sumaAlt`. |
-| **Generación de Subconjuntos y Combinatoria** | Algoritmos combinatorios mediante evaluación diferida: `permutaciones`, `partes` (Power Set) y `sublistas`. |
-| **Recursión Primitiva** | Esquema `recr` para casos donde se requiere acceder a la cola remanente de la estructura (ej. `sacarUna`). |
-| **Estructuras de Datos Definidas por el Usuario** | Definición y esquemas de recursión estructural/primitiva para:<br>• **Polinomios:** `foldPoli` y evaluación.<br>• **Árboles Binarios (`AB`):** `foldAB`, `recrAB`, `esABB`, `ramas`, `espejo`.<br>• **Árboles Hoja (`AIH`):** `foldAIH`, cálculo de altura y tamaño.<br>• **RoseTree:** Árboles n-arios, cálculo de distancias y `hojas`. |
-| **Evaluación Laziness & Listas Infinitas** | Listas infinitas con List Comprehensions: `pitagoricas`, `paresDeNat`, `listasQueSuman` y enumeración de listas finitas. |
+| **Motor de Búsqueda & Arboles de Resolución** | Reglas de parentesco (`padre`, `abuelo`, `ancestro`), unificación y control de consultas infinitas. |
+| **Operaciones con Listas** | Uso de acoplamiento `[Cabeza|Cola]` y `append/3`: `aplanar/2`, `intersección/3`, `sacarDuplicados/2`, `permutacion/2`, `reparto/3`. |
+| **Instanciación y Reversibilidad** | Generadores infinitos como `desde/2`, intercalado de listas y construcción reversible. |
+| **Arboles Binarios en Prolog** | Representación mediante `bin(Izq, Val, Der)` y `nil`: `inorder/2`, `aBB/1`, `aBBInsertar/3`. |
+| **Técnica Generate & Test** | Generación controlada de espacio de búsqueda: `coprimos/2`, `cuadradoSemiMágico/2`, `perímetro/2` para triángulos válidos. |
+| **Negación por Falla (NAF) y Cut (`!`)** | Uso de `not/1`, corte de ramas del árbol de resolución, orden de literales y predicados integradores (ej. `corteMásParejo/3`, `próximoNumPoderoso/2`). |
+| **Ejercicios Integradores** | • **Grafos:** `caminoSimple/4`, `caminoHamiltoniano/2`, `esConexo/1`, `esEstrella/1`.<br>• **Árboles Generadores:** `arbol/1`, `nodosEn/2`, `arbolSinRepEn/2`. |
 
 ---
 
-## 🛠️ Requisitos e Instalación
+## 🛠️ Requisitos y Uso
 
-Para ejecutar y probar las soluciones se recomienda contar con el compilador **GHC / GHCi**:
+Se requiere contar con **SWI-Prolog** instalado en el sistema.
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com/Lucas252004/Haskell.git
-   cd Haskell
+   git clone https://github.com/Lucas252004/Prolog.git
+   cd Prolog
    ```
 
-2. **Cargar el archivo de soluciones en el intérprete interactivo:**
+2. **Cargar la guía de ejercicios en el entorno interactivo:**
    ```bash
-   ghci practica1.hs
+   swipl p8_prog_logica.pl
    ```
 
-3. **Ejemplos de ejecución en GHCi:**
-   ```haskell
-   -- Probar plegados y funciones combinatorias
-   ghci> permutaciones [1, 2, 3]
-   ghci> evaluar 3 (Suma X (Cte 5))
+3. **Ejemplos de consultas en el REPL (`?-`):**
+   ```prolog
+   % Consulta de reversibilidad para sublistas que suman una cantidad
+   ?- parteQueSuman([1,2,3,4,5], 9, P).
    
-   -- Probar árbol binario de búsqueda
-   ghci> esABB (Bin (Bin Nil 1 Nil) 3 (Bin Nil 5 Nil))
-   True
+   % Generación de cuadrados semi-mágicos de 2x2
+   ?- cuadradoSemiMágico(2, Matrix).
+   
+   % Rutas en un grafo no orientado
+   ?- caminoHamiltoniano(Grafo, Camino).
    ```
 
 ---
