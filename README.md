@@ -17,7 +17,7 @@ Los ejercicios cubren los temas centrales de la materia, divididos en las siguie
 | Módulo / Tema | Descripción y Predicados Implementados |
 | :--- | :--- |
 | **Motor de Búsqueda & Arboles de Resolución** | Reglas de parentesco (`padre`, `abuelo`, `ancestro`), unificación y control de consultas infinitas. |
-| **Operaciones con Listas** | Uso de acoplamiento `[Cabeza` | `Cola]` y `append/3`: `aplanar/2`, `intersección/3`, `sacarDuplicados/2`, `permutacion/2`, `reparto/3`. |
+| **Operaciones con Listas** | Uso de acoplamiento `[Cabeza Cola]` y `append/3`: `aplanar/2`, `intersección/3`, `sacarDuplicados/2`, `permutacion/2`, `reparto/3`. |
 | **Instanciación y Reversibilidad** | Generadores infinitos como `desde/2`, intercalado de listas y construcción reversible. |
 | **Arboles Binarios en Prolog** | Representación mediante `bin(Izq, Val, Der)` y `nil`: `inorder/2`, `aBB/1`, `aBBInsertar/3`. |
 | **Técnica Generate & Test** | Generación controlada de espacio de búsqueda: `coprimos/2`, `cuadradoSemiMágico/2`, `perímetro/2` para triángulos válidos. |
